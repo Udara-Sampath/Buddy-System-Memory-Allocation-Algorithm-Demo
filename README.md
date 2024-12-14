@@ -5,7 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/downloads/)  
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-![Buddy System Memory Allocation Algorithm Demo Tool UI](./images/buddy-system-demo-ui)
+![Buddy System Memory Allocation Algorithm Demo Tool UI](./images/buddy-system-demo-ui.png)
 
 This project implements a **Buddy System Memory Allocation** algorithm with a graphical user interface (GUI) built using **Python** and **Tkinter**. The Buddy System is a classic memory management technique designed to minimize fragmentation and streamline allocations and deallocations.
 
@@ -56,11 +56,13 @@ This project is inspired by classical Buddy System memory allocation strategies 
 ## Installation & Setup
 
 1. **Clone or Download the Repository:**
+
    ```bash
    git clone https://github.com/yourusername/buddy-system-allocation.git
    cd buddy-system-allocation
 
    ```
+
 2. **(Optional) Create & Activate a Virtual Environment:**
    On linux
    ```bash
