@@ -359,18 +359,40 @@ def create_gui():
             messagebox.showerror("Error", "No process selected.")
 
     def update_total_memory():
+        nonlocal system  # Declare nonlocal at the start of the function
+
         try:
             new_memory = int(total_memory_entry.get())
-            if new_memory > 0:
-                nonlocal system
+            if new_memory <= 0:
+                messagebox.showerror(
+                    "Error", "Total memory must be a positive integer.")
+                return
+
+            # Check if there are active processes
+            if active_processes.size() > 0:
+                # Ask for confirmation to remove all active tasks
+                result = messagebox.askyesno("Confirm Memory Update",
+                                             "There are active tasks. Updating total memory will remove them. Continue?")
+                if not result:
+                    # User chose no, do not update memory
+                    return
+                else:
+                    # Remove all active tasks
+                    active_processes.delete(0, tk.END)
+                    # Reinitialize the system with the new memory
+                    system = BuddySystem(new_memory, log_callback)
+                    total_label.config(text=f"Total Memory: {
+                                       system.total_memory} MB")
+                    update_memory_view()
+                    log_callback(f"Total memory updated to {new_memory} MB.")
+            else:
+                # No active processes, just update memory
                 system = BuddySystem(new_memory, log_callback)
                 total_label.config(text=f"Total Memory: {
                                    system.total_memory} MB")
                 update_memory_view()
                 log_callback(f"Total memory updated to {new_memory} MB.")
-            else:
-                messagebox.showerror(
-                    "Error", "Total memory must be a positive integer.")
+
         except ValueError:
             messagebox.showerror("Error", "Total memory must be an integer.")
 
